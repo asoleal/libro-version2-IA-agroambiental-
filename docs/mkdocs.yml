@@ -1,0 +1,27 @@
+site_name: Libro IA Agroambiental
+site_dir: ../docs_html_final
+docs_dir: docs
+# ESTA LINEA ARREGLA LA NAVEGACIÓN LOCAL:
+use_directory_urls: false
+theme:
+  name: material
+  language: es
+  palette: { scheme: default, primary: teal, accent: indigo }
+markdown_extensions:
+  - pymdownx.arithmatex: { generic: true }
+  - pymdownx.highlight: { anchor_linenums: true }
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+extra_css: [stylesheets/extra.css]
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/mathjax-config.js
+nav:
+  - Inicio: index.md
+  - estructura-datos.md
+  - operaciones-estructuras.md
+  - matrices-especiales.md

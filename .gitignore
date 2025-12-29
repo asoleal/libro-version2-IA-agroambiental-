@@ -1,0 +1,17 @@
+# Ignorar carpeta de construcción temporal
+build/
+
+# Ignorar archivos basura sueltos (por si acaso)
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+__pycache__/
+*.pyc
+
+# Mantener la carpeta pdf/ en el repo, pero quizas no el PDF binario si no quieres
+# (Generalmente no se suben PDFs a git, pero para este caso lo dejaremos opcional)
+# pdf/*.pdf 

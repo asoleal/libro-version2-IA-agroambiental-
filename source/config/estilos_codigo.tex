@@ -1,0 +1,37 @@
+\usepackage{listings}
+
+% --- Colores ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.98}
+
+% --- Estilo Base ---
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    extendedchars=true,
+    literate={ó}{{\'o}}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1
+}
+
+\lstset{style=mystyle}
+\lstset{
+    language=Python,
+    keywordstyle=\color{blue},
+    frame=single,
+    rulecolor=\color{gray!30}
+}

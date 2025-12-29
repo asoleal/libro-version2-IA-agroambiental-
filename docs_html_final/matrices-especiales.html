@@ -1,0 +1,1108 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="operaciones-estructuras.html">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Matrices Especiales y sus Propiedades - Libro IA Agroambiental</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#matrices-especiales-y-sus-propiedades" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="index.html" title="Libro IA Agroambiental" class="md-header__button md-logo" aria-label="Libro IA Agroambiental" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Libro IA Agroambiental
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Matrices Especiales y sus Propiedades
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Libro IA Agroambiental" class="md-nav__button md-logo" aria-label="Libro IA Agroambiental" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Libro IA Agroambiental
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estructura-datos.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estructuras de datos: escalares, vectores, matrices y tensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="operaciones-estructuras.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poniendo el Motor en Marcha: Aritmética Tensorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrices Especiales y sus Propiedades
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="matrices-especiales.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrices Especiales y sus Propiedades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-simetricas-el-espejo-de-los-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Simétricas: El Espejo de los Datos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices Simétricas: El Espejo de los Datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición Formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedad-espectral-teorema-espectral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propiedad Espectral (Teorema Espectral)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-definidas-positivas-la-energia-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Definidas Positivas: La Energía del Sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices Definidas Positivas: La Energía del Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición Formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacion-computacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación Computacional
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-diagonales-e-identidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Diagonales e Identidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices Diagonales e Identidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-y-ventajas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición y Ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-ortogonales-rotaciones-perfectas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Ortogonales: Rotaciones Perfectas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices Ortogonales: Rotaciones Perfectas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición Formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación en Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-integradora-la-matriz-de-covarianza" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexión Integradora: La Matriz de Covarianza
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conexión Integradora: La Matriz de Covarianza">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-y-conexiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propiedades y conexiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-en-ciencia-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación en ciencia de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrices-definidas-positivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Definidas Positivas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definicion-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición paso a paso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-identificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criterios de identificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicacion-en-ingenieria-agricola-minimizacion-de-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicación en Ingeniería Agrícola: Minimización de Costos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-integradora-la-matriz-de-covarianza_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexión integradora: la matriz de covarianza
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-simetricas-el-espejo-de-los-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Simétricas: El Espejo de los Datos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices Simétricas: El Espejo de los Datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición Formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedad-espectral-teorema-espectral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propiedad Espectral (Teorema Espectral)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-definidas-positivas-la-energia-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Definidas Positivas: La Energía del Sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices Definidas Positivas: La Energía del Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición Formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacion-computacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación Computacional
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-diagonales-e-identidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Diagonales e Identidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices Diagonales e Identidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-y-ventajas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición y Ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-ortogonales-rotaciones-perfectas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Ortogonales: Rotaciones Perfectas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices Ortogonales: Rotaciones Perfectas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición Formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación en Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-integradora-la-matriz-de-covarianza" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexión Integradora: La Matriz de Covarianza
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conexión Integradora: La Matriz de Covarianza">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-y-conexiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propiedades y conexiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-en-ciencia-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación en ciencia de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrices-definidas-positivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices Definidas Positivas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definicion-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición paso a paso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-identificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Criterios de identificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicacion-en-ingenieria-agricola-minimizacion-de-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicación en Ingeniería Agrícola: Minimización de Costos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-integradora-la-matriz-de-covarianza_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexión integradora: la matriz de covarianza
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="matrices-especiales-y-sus-propiedades">Matrices Especiales y sus Propiedades</h1>
+<p>En el mundo del Álgebra Lineal Computacional, no todas las matrices son iguales. Existen ciertas estructuras "privilegiadas" que hacen que los algoritmos de Inteligencia Artificial funcionen miles de veces más rápido o garanticen que un entrenamiento converja a una solución estable. En este capítulo, exploraremos estas joyas matemáticas.</p>
+<h2 id="matrices-simetricas-el-espejo-de-los-datos">Matrices Simétricas: El Espejo de los Datos</h2>
+<p>Antes de entrar en definiciones rigurosas, pensemos en una red de sensores en un cultivo. La distancia entre el Sensor A y el Sensor B es la misma que entre el B y el A. Esta reciprocidad es la esencia de la simetría.</p>
+<h3 id="definicion-formal">Definición Formal</h3>
+<p>Una matriz cuadrada <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> se dice <em>simétrica</em> si es igual a su transpuesta: <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{A} = \mathbf{A}^\top\)</span>\)</span> Esto implica que sus elementos reflejan esa igualdad respecto a la diagonal principal: <span class="arithmatex">\(a_{ij} = a_{ji}\)</span> para todo <span class="arithmatex">\(i, j\)</span>.</p>
+<details class="example"><summary><strong>Aplicación: Redes de Sensores y Adyacencia</strong></summary><div class="details-content"> Imagine que monitoreamos una plantación con 3 torres de control comunicadas entre sí. Queremos representar la distancia (o la calidad de la señal) entre ellas. $$\mathbf{D} = \begin{bmatrix} 
+0 & 50 & 120 \\ 
+50 & 0 & 80 \\ 
+120 & 80 & 0 
+\end{bmatrix}$$ Note que $d_{12} = 50$ (Torre 1 a Torre 2) es igual a $d_{21} = 50$. Esta matriz es simétrica. En IA, las matrices de correlación y covarianza (que veremos más adelante) son siempre simétricas. </div></details>
+
+<h3 id="propiedad-espectral-teorema-espectral">Propiedad Espectral (Teorema Espectral)</h3>
+<p>La razón por la que las matrices simétricas son tan importantes en IA, no es solo estética. Tienen una propiedad computacional vital: Sus autovalores[^1] son siempre números reales (no complejos) y sus autovectores son ortogonales entre sí. Esto garantiza estabilidad numérica.</p>
+<h2 id="matrices-definidas-positivas-la-energia-del-sistema">Matrices Definidas Positivas: La Energía del Sistema</h2>
+<p>Este es quizás el concepto más importante para entender la <em>optimización</em> (cómo aprenden las redes neuronales).</p>
+<p>Imagine una función de costo (error) que tiene forma de "cuenco" o "tazón". Si soltamos una canica (el algoritmo), esta caerá inevitablemente al fondo (el mínimo error). Una matriz Definida Positiva garantiza que esa superficie tenga esa forma de cuenco perfecto, sin puntos de silla ni caídas al infinito.</p>
+<h3 id="definicion-formal_1">Definición Formal</h3>
+<p>Una matriz simétrica <span class="arithmatex">\(\mathbf{A}\)</span> es <strong>Definida Positiva (DP)</strong> si para cualquier vector no nulo <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^n\)</span>: <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{x}^\top \mathbf{A} \mathbf{x} &gt; 0\)</span>\)</span> El término <span class="arithmatex">\(\mathbf{x}^\top \mathbf{A} \mathbf{x}\)</span> se conoce como <em>Forma Cuadrática</em>. Si el resultado es <span class="arithmatex">\(\geq 0\)</span>, se llama <strong>Semidefinida Positiva (SDP)</strong>.</p>
+<details class="example"><summary><strong>Aplicación: Función de Costo en Riego Automatizado</strong></summary><div class="details-content"> Queremos minimizar el gasto de energía ($J$) de una bomba de agua. Este costo depende de dos variables de control: la velocidad del motor ($v$) y la presión de salida ($p$). $$\mathbf{x} = \begin{bmatrix} v \\ p \end{bmatrix}$$
+
+El modelo de costo energético se define como una forma cuadrática: $$J(\mathbf{x}) = \mathbf{x}^\top \mathbf{Q} \mathbf{x}$$
+
+Supongamos un punto de operación $\mathbf{x} = [2, 4]^\top$ (2000 RPM y 4 Bar) y una matriz de coeficientes del sistema $\mathbf{Q}$: $$\mathbf{Q} = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}$$ *(Nota: $\mathbf{Q}$ es simétrica y sus autovalores son positivos, por lo tanto es Definida Positiva).*
+
+**Cálculo paso a paso:**
+
+1\. Primero multiplicamos la matriz $\mathbf{Q}$ por el vector $\mathbf{x}$: $$\mathbf{Q}\mathbf{x} = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix} \begin{bmatrix} 2 \\ 4 \end{bmatrix} = \begin{bmatrix} (2)(2) + (1)(4) \\ (1)(2) + (3)(4) \end{bmatrix} = \begin{bmatrix} 8 \\ 14 \end{bmatrix}$$
+
+2\. Luego multiplicamos el vector fila $\mathbf{x}^\top$ por el resultado anterior: $$J = \begin{bmatrix} 2 & 4 \end{bmatrix} \cdot \begin{bmatrix} 8 \\ 14 \end{bmatrix}$$
+
+3\. Realizamos el producto punto final: $$J = (2)(8) + (4)(14) = 16 + 56 = \mathbf{72} \text{ unidades de energía}$$
+
+**Conclusión:** Dado que el resultado ($72$) es positivo, confirmamos la propiedad de la matriz. Al ser $\mathbf{Q}$ definida positiva, la superficie de costo tiene forma de \"tazón\", garantizando que el algoritmo de optimización (como el Descenso de Gradiente) siempre podrá descender hacia un mínimo estable sin oscilaciones infinitas. </div></details>
+
+<h3 id="verificacion-computacional">Verificación Computacional</h3>
+<p>¿Cómo sabemos si una matriz es DP en Python? Verificamos que todos sus autovalores sean positivos.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Matriz Simetrica</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>              <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> 
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Verificamos Simetria</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">es_simetrica</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Es simetrica: </span><span class="si">{</span><span class="n">es_simetrica</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># Verificamos si es Definida Positiva (Autovalores &gt; 0)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">autovalores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">es_def_positiva</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">autovalores</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Autovalores: </span><span class="si">{</span><span class="n">autovalores</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Es Definida Positiva: </span><span class="si">{</span><span class="n">es_def_positiva</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="matrices-diagonales-e-identidad">Matrices Diagonales e Identidad</h2>
+<p>Son las matrices más \"limpias\". Toda la información está en la diagonal principal; fuera de ella, todo es ruido (ceros).</p>
+<h3 id="definicion-y-ventajas">Definición y Ventajas</h3>
+<p>Una matriz diagonal <span class="arithmatex">\(\mathbf{D}\)</span> tiene <span class="arithmatex">\(d_{ij} = 0\)</span> si <span class="arithmatex">\(i \neq j\)</span>. <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{D} = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)\)</span>\)</span> <strong>Ventaja Computacional:</strong></p>
+<ul>
+<li>
+<p>Multiplicar por <span class="arithmatex">\(\mathbf{D}\)</span> es solo escalar cada elemento (barato computacionalmente).</p>
+</li>
+<li>
+<p>La inversa <span class="arithmatex">\(\mathbf{D}^{-1}\)</span> es trivial: solo invertimos los elementos de la diagonal (<span class="arithmatex">\(1/\lambda_i\)</span>).</p>
+</li>
+</ul>
+<details class="example"><summary><strong>Aplicación: Sistemas de Cultivos Independientes</strong></summary><div class="details-content"> Si gestionamos 3 invernaderos aislados donde el clima de uno NO afecta al otro, la matriz del sistema es diagonal. $$\begin{bmatrix} T_1 \\ T_2 \\ T_3 \end{bmatrix}_{nuevo} = \begin{bmatrix} 0.9 & 0 & 0 \\ 0 & 0.8 & 0 \\ 0 & 0 & 0.95 \end{bmatrix} \begin{bmatrix} T_1 \\ T_2 \\ T_3 \end{bmatrix}_{actual}$$ Aquí, el invernadero 1 retiene el 90% del calor, el 2 el 80%, etc. No hay \"mezcla\" de términos. </div></details>
+
+<h2 id="matrices-ortogonales-rotaciones-perfectas">Matrices Ortogonales: Rotaciones Perfectas</h2>
+<p>Las matrices ortogonales son fundamentales en robótica (mecatrónica) y en el preprocesamiento de imágenes (PCA). Representan transformaciones rígidas: rotan los datos pero no los estiran ni los deforman.</p>
+<h3 id="definicion-formal_2">Definición Formal</h3>
+<p>Una matriz cuadrada <span class="arithmatex">\(\mathbf{Q}\)</span> es ortogonal si su transpuesta es igual a su inversa: <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{Q}^\top = \mathbf{Q}^{-1} \implies \mathbf{Q}^\top \mathbf{Q} = \mathbf{Q} \mathbf{Q}^\top = \mathbf{I}\)</span>\)</span> Esto implica que las columnas de <span class="arithmatex">\(\mathbf{Q}\)</span> son vectores unitarios y perpendiculares entre sí.</p>
+<details class="example"><summary><strong>Aplicación: Mecatrónica: Rotación de un Brazo Robótico</strong></summary><div class="details-content"> Un brazo robótico recolector de frutas necesita rotar su pinza sin cambiar el tamaño de la fruta que ve. La matriz de rotación en 2D es el ejemplo clásico de matriz ortogonal: $$\mathbf{R}(\theta) = \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix}$$ Si aplicamos esta matriz a un vector posición $\mathbf{v}$, la nueva posición $\mathbf{v}' = \mathbf{R}\mathbf{v}$ tendrá exactamente la misma longitud (norma) que $\mathbf{v}$. $||\mathbf{R}\mathbf{v}|| = ||\mathbf{v}||$. </div></details>
+
+<h3 id="implementacion-en-python">Implementación en Python</h3>
+<p>Podemos verificar la ortogonalidad comprobando si <span class="arithmatex">\(Q @ Q.T\)</span> es la identidad.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="c1"># Rotacion de 45 grados</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">s</span><span class="p">],</span> 
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>              <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Verificacion: Q @ Q.T debe ser Identidad</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">identidad_aprox</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">@</span> <span class="n">Q</span><span class="o">.</span><span class="n">T</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Q @ Q.T (deberia ser Identidad):&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">identidad_aprox</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="conexion-integradora-la-matriz-de-covarianza">Conexión Integradora: La Matriz de Covarianza</h2>
+<p>Cerramos este capítulo conectando todo. Cuando recolectamos datos del mundo real (Big Data Agroambiental), construimos la **Matriz de Covarianza** (<span class="arithmatex">\(\mathbf{\Sigma}\)</span>).</p>
+<p>Esta matriz es mágica porque cumple todo lo que vimos: 1. Es **Simétrica** (la covarianza de humedad vs temperatura es igual a temperatura vs humedad). 2. Es **Semidefinida Positiva** (la varianza siempre es no negativa). 3. Sus autovectores son **Ortogonales** (apuntan a las direcciones principales de variación de los datos).</p>
+<p>Esta matriz será la protagonista en el siguiente capítulo sobre Autovalores y Análisis de Componentes Principales (PCA).</p>
+<h5 id="propiedades-y-conexiones">Propiedades y conexiones</h5>
+<ul>
+<li>
+<p>Toda matriz de covarianza <span class="arithmatex">\(\mathbf{\Sigma}\)</span> es <strong>simétrica y SDP</strong>.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\mathbf{A}\)</span> es SDP, todos sus autovalores son no negativos (<span class="arithmatex">\(\lambda_i \geq 0\)</span>).</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\mathbf{A}\)</span> es DP, entonces <span class="arithmatex">\(\det(\mathbf{A}) &gt; 0\)</span> y es <strong>invertible</strong>.</p>
+</li>
+</ul>
+<h5 id="interpretacion-en-ciencia-de-datos">Interpretación en ciencia de datos</h5>
+<p>La condición SDP garantiza que la varianza calculada en cualquier dirección proyectada sea no negativa, lo cual es una <strong>consistencia estadística fundamental</strong>. En PCA, los autovalores de <span class="arithmatex">\(\mathbf{\Sigma}\)</span> representan varianzas explicadas; si fueran negativos, el modelo físico estaría roto.</p>
+<p><strong>Ejemplo.</strong> La matriz <span class="arithmatex">\(\mathbf{A} = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}\)</span> es simétrica y DP, ya que su determinante es <span class="arithmatex">\(3 &gt; 0\)</span> y su traza es <span class="arithmatex">\(4 &gt; 0\)</span> (criterio rápido para matrices <span class="arithmatex">\(2 \times 2\)</span>).</p>
+<h5 id="matrices-definidas-positivas">Matrices Definidas Positivas</h5>
+<p>El concepto de una matriz <strong>definida positiva</strong> es análogo a la idea de un número real positivo (<span class="arithmatex">\(a &gt; 0\)</span>), pero extendido al álgebra matricial. En ingeniería, estas matrices son fundamentales porque garantizan la estabilidad de los sistemas y la existencia de mínimos únicos en problemas de optimización (costos, energía, error).</p>
+<h5 id="definicion-paso-a-paso">Definición paso a paso</h5>
+<p>Sea <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> una matriz simétrica. Decimos que <span class="arithmatex">\(\mathbf{A}\)</span> es definida positiva si satisface la siguiente condición energética: <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{x}^\top \mathbf{A} \mathbf{x} &gt; 0, \quad \text{para todo vector } \mathbf{x} \in \mathbb{R}^n, \mathbf{x} \neq \mathbf{0}.\)</span>\)</span> El término escalar <span class="arithmatex">\(E = \mathbf{x}^\top \mathbf{A} \mathbf{x}\)</span> se conoce como <em>forma cuadrática</em>. Geométricamente, si <span class="arithmatex">\(\mathbf{A}\)</span> es definida positiva, la gráfica de esta función cuadrática tiene forma de "tazón" o "cuenco" curvado hacia arriba, lo que implica que tiene un fondo (un mínimo global).</p>
+<h5 id="criterios-de-identificacion">Criterios de identificación</h5>
+<p>Para verificar si una matriz es definida positiva sin probar infinitos vectores, utilizamos dos criterios prácticos:</p>
+<ol>
+<li>
+<p><strong>Autovalores (Eigenvalues):</strong> Todos los autovalores <span class="arithmatex">\(\lambda_i\)</span> de <span class="arithmatex">\(\mathbf{A}\)</span> deben ser estrictamente positivos (<span class="arithmatex">\(\lambda_i &gt; 0\)</span>).</p>
+</li>
+<li>
+<p><strong>Criterio de Sylvester:</strong> Todos los determinantes de los sub-bloques principales superiores (los menores principales) deben ser positivos.</p>
+</li>
+</ol>
+<h5 id="aplicacion-en-ingenieria-agricola-minimizacion-de-costos">Aplicación en Ingeniería Agrícola: Minimización de Costos</h5>
+<p>En la optimización de procesos agroindustriales, buscamos minimizar funciones de costo. La condición matemática para asegurar que hemos encontrado un <strong>costo mínimo</strong> (y no un máximo o un punto de silla) es que la matriz de segundas derivadas (la Matriz Hessiana) sea definida positiva.</p>
+<p><strong>Ejemplo práctico:</strong> Un ingeniero agrícola desea minimizar el costo operativo <span class="arithmatex">\(C\)</span> de un sistema de fertirriego, el cual depende de dos variables:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(w\)</span>: Cantidad de agua (<span class="arithmatex">\(m^3/ha\)</span>).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(f\)</span>: Cantidad de fertilizante (<span class="arithmatex">\(kg/ha\)</span>).</p>
+</li>
+</ul>
+<p>Supongamos que el modelo de costos se aproxima localmente mediante una función cuadrática: <span class="arithmatex">\(<span class="arithmatex">\(C(w, f) = 2w^2 + 2wf + 4f^2 - 100w - 200f + 5000.\)</span>\)</span> Para verificar si este sistema tiene un costo mínimo estable, analizamos la curvatura de la función mediante su matriz Hessiana <span class="arithmatex">\(\mathbf{H}\)</span> (la matriz de coeficientes cuadráticos): <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{H} =
+\begin{pmatrix}
+\frac{\partial^2 C}{\partial w^2} &amp; \frac{\partial^2 C}{\partial w \partial f} \\
+\frac{\partial^2 C}{\partial f \partial w} &amp; \frac{\partial^2 C}{\partial f^2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+4 &amp; 2 \\
+2 &amp; 8
+\end{pmatrix}.\)</span>\)</span></p>
+<p><strong>Verificación paso a paso:</strong></p>
+<ol>
+<li>
+<p><strong>Simetría:</strong> La matriz es simétrica (<span class="arithmatex">\(H_{12} = H_{21} = 2\)</span>).</p>
+</li>
+<li>
+<p><strong>Criterio de Autovalores:</strong> Calculamos <span class="arithmatex">\(\det(\mathbf{H} - \lambda \mathbf{I}) = (4-\lambda)(8-\lambda) - 4 = \lambda^2 - 12\lambda + 28 = 0\)</span>. Resolviendo, obtenemos <span class="arithmatex">\(\lambda_1 \approx 9.4\)</span> y <span class="arithmatex">\(\lambda_2 \approx 2.6\)</span>.</p>
+</li>
+<li>
+<p><strong>Conclusión:</strong> Como <span class="arithmatex">\(\lambda_1 &gt; 0\)</span> y <span class="arithmatex">\(\lambda_2 &gt; 0\)</span>, la matriz <span class="arithmatex">\(\mathbf{H}\)</span> es <strong>definida positiva</strong>.</p>
+</li>
+</ol>
+<p><strong>Interpretación Ingenieril:</strong> Dado que la matriz es definida positiva, la superficie de costos es convexa (tiene forma de tazón). Esto garantiza al ingeniero que existe una única combinación óptima de agua y fertilizante que minimiza los costos operativos, permitiendo el uso de algoritmos de optimización (como el Descenso de Gradiente) con total seguridad de convergencia.</p>
+<h2 id="conexion-integradora-la-matriz-de-covarianza_1">Conexión integradora: la matriz de covarianza</h2>
+<p>En ciencia de datos agro-ambiental, la matriz más omnipresente es la matriz de covarianza muestral: <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{\Sigma} = \frac{1}{m-1} \mathbf{X}_c^\top \mathbf{X}_c,\)</span>\)</span> donde <span class="arithmatex">\(\mathbf{X}_c\)</span> es la matriz de datos centrada (media cero). Esta estructura unifica todos los conceptos anteriores:</p>
+<ul>
+<li>
+<p>Es <strong>cuadrada y simétrica</strong> (propiedad de <span class="arithmatex">\(\mathbf{A}^\top \mathbf{A}\)</span>).</p>
+</li>
+<li>
+<p>Es <strong>semidefinida positiva</strong> (reflejando la naturaleza no negativa de la dispersión de datos).</p>
+</li>
+<li>
+<p><strong>Invertibilidad y Colinealidad:</strong> Si dos variables son colineales (ej. "kg de fertilizante" y "g de nitrógeno aportado"), las columnas de <span class="arithmatex">\(\mathbf{X}\)</span> son dependientes, el determinante de <span class="arithmatex">\(\mathbf{\Sigma}\)</span> cae a 0, y la matriz no se puede invertir. Esto alerta al científico de datos sobre redundancia en el modelo.</p>
+</li>
+</ul>
+<p>Así, el producto, la transpuesta, el determinante y la inversa no son conceptos aislados, sino herramientas coordinadas que permiten modelar, transformar y diagnosticar la calidad de los datos agro-ambientales.</p>
+<p>[^1]: Los autovalores son valores <span class="arithmatex">\(\lambda\)</span> que satisfacen <span class="arithmatex">\(|A-\lambda I| = 0\)</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="javascripts/mathjax-config.js"></script>
+      
+    
+  </body>
+</html>

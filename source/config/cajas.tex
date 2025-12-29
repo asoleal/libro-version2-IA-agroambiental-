@@ -1,0 +1,51 @@
+% --- Carga Robusta de tcolorbox ---
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable}
+
+% --- Colores de Consola ---
+\definecolor{terminalbg}{rgb}{0.96, 0.96, 0.94} 
+\definecolor{terminalframe}{rgb}{0.7, 0.7, 0.7} 
+
+% --- 1. APPBOX (Azul) - Compatible y Breakable ---
+\newtcolorbox{appbox}[1]{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    title=Aplicación: #1,
+    enhanced,      
+    breakable      
+}
+
+% --- 2. ALERTBLOCK (Rojo) ---
+\newtcolorbox{alertblock}[1]{
+  colback=red!5!white,      
+  colframe=red!75!black,    
+  fonttitle=\bfseries,      
+  title={#1},               
+  sharp corners=south,      
+  boxrule=0.5mm,            
+  arc=3mm                   
+}
+
+% --- 3. CAJA SALIDA / CONSOLA ---
+\newtcolorbox{salida}{
+    colback=terminalbg,       
+    colframe=terminalframe,   
+    boxrule=0.5pt,            
+    arc=3pt,                  
+    left=6pt, right=6pt, top=4pt, bottom=4pt, 
+    fontupper=\ttfamily\footnotesize\color{black!85}, 
+    title=\textbf{\texttt{>\_ Output / Consola}}, 
+    coltitle=black!80,        
+    colbacktitle=gray!15,     
+    toptitle=2pt, bottomtitle=2pt, 
+}
+% --- 4. AGROBOX (Verde/Naturaleza) ---
+\newtcolorbox{agrobox}[1]{
+    colback=green!5!white,
+    colframe=green!60!black,
+    fonttitle=\bfseries,
+    title=AgroTip: #1,
+    enhanced,
+    breakable
+}
