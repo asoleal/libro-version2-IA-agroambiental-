@@ -19,6 +19,8 @@ declare -a ORDEN_CAPITULOS=(
     "estructura-datos"
     "operaciones-estructuras"
     "matrices-especiales"
+    "sistemas_ecuaciones"
+    "regresion_lineal"
 )
 
 echo "========================================"

@@ -1,0 +1,10 @@
+Matriz A (Diseño):
+[[10.  1.]
+ [15.  1.]
+ [20.  1.]]
+
+Modelo encontrado:
+Biomasa = 0.110 * Agua + 0.205
+
+Predicción para 40L de agua:
+4.62 Kg de biomasa
