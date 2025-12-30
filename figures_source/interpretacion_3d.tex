@@ -1,0 +1,45 @@
+\documentclass[tikz, border=2mm]{standalone}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{3d, calc, backgrounds}
+
+\definecolor{colorP1}{RGB}{52, 152, 219}   % Azul
+\definecolor{colorP2}{RGB}{231, 76, 60}    % Rojo
+\definecolor{colorP3}{RGB}{46, 204, 113}   % Verde
+
+\begin{document}
+\tdplotsetmaincoords{70}{110} % Ángulo de visión 3D
+\begin{tikzpicture}[tdplot_main_coords, scale=1.5, line join=round]
+
+    % Ejes
+    \draw[->, thick, gray] (0,0,0) -- (3,0,0) node[anchor=north east]{$x_1$};
+    \draw[->, thick, gray] (0,0,0) -- (0,3,0) node[anchor=north west]{$x_2$};
+    \draw[->, thick, gray] (0,0,0) -- (0,0,3) node[anchor=south]{$x_3$};
+
+    % --- PLANO 1 (Suelo - Verde) ---
+    % z = 0
+    \fill[colorP3, opacity=0.3] (0,0,0) -- (2.5,0,0) -- (2.5,2.5,0) -- (0,2.5,0) -- cycle;
+    \draw[colorP3, thick] (2.5,0,0) -- (2.5,2.5,0) -- (0,2.5,0); % Bordes visibles
+    \node[colorP3!80!black] at (2.2, 2.2, 0) {\footnotesize Plano 3};
+
+    % --- PLANO 2 (Pared Izquierda - Rojo) ---
+    % x = 0
+    \fill[colorP2, opacity=0.3] (0,0,0) -- (0,2.5,0) -- (0,2.5,2.5) -- (0,0,2.5) -- cycle;
+    \draw[colorP2, thick] (0,2.5,0) -- (0,2.5,2.5) -- (0,0,2.5);
+    \node[colorP2!80!black] at (0, 2.2, 2.2) {\footnotesize Plano 2};
+
+    % --- PLANO 3 (Pared Derecha - Azul) ---
+    % y = 0
+    \fill[colorP1, opacity=0.3] (0,0,0) -- (2.5,0,0) -- (2.5,0,2.5) -- (0,0,2.5) -- cycle;
+    \draw[colorP1, thick] (2.5,0,0) -- (2.5,0,2.5) -- (0,0,2.5);
+    \node[colorP1!80!black] at (2.2, 0, 2.2) {\footnotesize Plano 1};
+
+    % --- PUNTO DE INTERSECCIÓN ---
+    \node[circle, fill=black, inner sep=1.5pt] at (0,0,0) {};
+    \node[anchor=north, font=\bfseries] at (0,-0.2,0) {Solución Única ($\mathbf{x}^*$)};
+    
+    % Flecha indicativa
+    \draw[->, dashed, black] (1.5, 1.5, 1.5) -- (0.1, 0.1, 0.1);
+    \node[font=\tiny, align=center] at (1.6, 1.6, 1.6) {Intersección\\de 3 planos};
+
+\end{tikzpicture}
+\end{document}

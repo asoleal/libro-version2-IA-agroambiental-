@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-# Asegurarnos de estar en la raíz del proyecto
 cd "$(dirname "$0")/.."
 
 echo "========================================"
@@ -12,24 +11,32 @@ echo "========================================"
 echo "🧹 [1/5] Limpiando build..."
 rm -rf build
 
-# 2. Generar figuras (PDF + SVG)
+# 2. Generar figuras (PDF + SVG) → van a ./images/
 echo "🎨 [2/5] Generando Figuras..."
 ./scripts/build_figures.sh
 
-# Después de generar figuras, copiar a source/images/
-echo "📂 Sincronizando figuras con source/images..."
-mkdir -p source/images
-cp images/* source/images/
+# 3. 🔑 DISTRIBUIR FIGURAS A LOS LUGARES CORRECTOS
+echo "📂 [3/5] Sincronizando figuras..."
 
-# 3. Configurar CMake
-echo "⚙️  [3/5] Configurando CMake..."
+# → Para LaTeX (compila desde source/)
+mkdir -p source/images
+cp -f images/* source/images/
+
+# → Para MkDocs: ¡actualizar LA FUENTE del sitio web!
+mkdir -p docs/docs/imagenes
+cp -f images/*.svg docs/docs/imagenes/   # Solo SVG para web
+# (opcional) cp -f images/*.pdf docs/docs/imagenes/  # si usas PDF en web
+
+echo "   → source/images/ y docs/docs/imagenes/ actualizados"
+
+# 4. Configurar y compilar PDF
+echo "⚙️  [4/5] Configurando CMake..."
 cmake -S . -B build -G "Unix Makefiles" > /dev/null
 
-# 4. Compilar PDF
 echo "📄 [4/5] Compilando PDF..."
 cmake --build build
 
-# 5. Compilar Web (Opcional)
+# 5. 🌐 Ahora sí: construir web con las figuras ACTUALIZADAS
 echo "🌐 [5/5] Construyendo Web..."
 ./scripts/build_web.sh
 
@@ -37,5 +44,5 @@ echo ""
 echo "========================================"
 echo "✅ ¡ÉXITO!"
 echo "📂 PDF: pdf/main.pdf"
-echo "🖼️  Figuras: images/*.pdf, images/*.svg"
+echo "🌐 Web: docs_html_final/index.html (¡con imágenes nuevas!)"
 echo "========================================"

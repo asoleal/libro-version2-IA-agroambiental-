@@ -16,8 +16,11 @@
 
     % --- PANEL 1: SOLUCIÓN ÚNICA ---
     \begin{scope}[shift={(0,0)}]
-        \node[font=\bfseries\small] at (1.5, 3.5) {1. Solución Única};
-        \node[font=\footnotesize, gray] at (1.5, 3.1) {Cruce en un punto};
+        % CAMBIO: Subí la coordenada Y de 3.5 a 4.2
+        \node[font=\bfseries\small] at (1.5, 4.2) {1. Solución Única};
+        % CAMBIO: Subí la coordenada Y de 3.1 a 3.6
+        \node[font=\footnotesize, gray] at (1.5, 3.6) {Cruce en un punto};
+        
         \draw[axis] (-0.5,0) -- (3.5,0) node[right] {\tiny $x_1$};
         \draw[axis] (0,-0.5) -- (0,3) node[above] {\tiny $x_2$};
         \draw[linea1] (0.2, 0.5) -- (2.8, 2.5) node[right] {\tiny $L_1$};
@@ -30,8 +33,10 @@
 
     % --- PANEL 2: SIN SOLUCIÓN ---
     \begin{scope}[shift={(5,0)}]
-        \node[font=\bfseries\small] at (1.5, 3.5) {2. Sin Solución};
-        \node[font=\footnotesize, gray] at (1.5, 3.1) {Paralelas distintas};
+        % CAMBIO: Ajuste de altura
+        \node[font=\bfseries\small] at (1.5, 4.2) {2. Sin Solución};
+        \node[font=\footnotesize, gray] at (1.5, 3.6) {Paralelas distintas};
+        
         \draw[axis] (-0.5,0) -- (3.5,0) node[right] {\tiny $x_1$};
         \draw[axis] (0,-0.5) -- (0,3) node[above] {\tiny $x_2$};
         \draw[linea1] (0.2, 1) -- (2.8, 2.5) node[right] {\tiny $L_1$};
@@ -42,8 +47,10 @@
 
     % --- PANEL 3: INFINITAS SOLUCIONES ---
     \begin{scope}[shift={(10,0)}]
-        \node[font=\bfseries\small] at (1.5, 3.5) {3. Infinitas Soluciones};
-        \node[font=\footnotesize, gray] at (1.5, 3.1) {Coincidentes};
+        % CAMBIO: Ajuste de altura
+        \node[font=\bfseries\small] at (1.5, 4.2) {3. Infinitas Soluciones};
+        \node[font=\footnotesize, gray] at (1.5, 3.6) {Coincidentes};
+        
         \draw[axis] (-0.5,0) -- (3.5,0) node[right] {\tiny $x_1$};
         \draw[axis] (0,-0.5) -- (0,3) node[above] {\tiny $x_2$};
         \draw[linea1, line width=3pt, opacity=0.3] (0.2, 0.5) -- (2.8, 2.5);

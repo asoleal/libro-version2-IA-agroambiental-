@@ -8,7 +8,7 @@
 PROJECT_ROOT=$(pwd)
 SRC_DIR="$PROJECT_ROOT/source"
 CHAPTERS_DIR="$SRC_DIR/chapters"
-IMAGES_DIR="$SRC_DIR/images" 
+IMAGES_DIR="$SRC_DIR/images"
 
 WEB_ROOT="$PROJECT_ROOT/docs"
 DOCS_CONTENT="$WEB_ROOT/docs"
@@ -118,20 +118,24 @@ for archivo in *.tex; do
     nombre=$(basename "$archivo" .tex)
     if [ "$nombre" == "main" ]; then continue; fi
     TARGET="$DOCS_CONTENT/$nombre.md"
-    
+
     pandoc "$archivo" -f latex -t markdown-simple_tables+fenced_code_blocks --mathjax --wrap=none -o "$TARGET"
-    
-    # Post-Procesado
+
+        # Post-Procesado
     sed -i 's/TOKENINFOSTART \(.*\) TOKENINFOENDTITLE/<div class="admonition warning"><p class="admonition-title">\1<\/p>/g' "$TARGET"
     sed -i 's/TOKENINFOSTOP/<\/div>/g' "$TARGET"
     sed -i 's/TOKENEXAMPLESTART \(.*\) TOKENEXAMPLEENDTITLE/<details class="example"><summary><strong>Aplicación: \1<\/strong><\/summary><div class="details-content">/g' "$TARGET"
     sed -i 's/TOKENEXAMPLESTOP/<\/div><\/details>/g' "$TARGET"
     sed -i 's/TOKENAGROSTART \(.*\) TOKENAGROENDTITLE/<div class="admonition tip"><p class="admonition-title">🌿 \1<\/p>/g' "$TARGET"
     sed -i 's/TOKENAGROSTOP/<\/div>/g' "$TARGET"
-    
-    # Corrección de imágenes (Apunta a imagenes/nombre.svg)
+
+    # Corrección de imágenes en sintaxis Markdown
     perl -0777 -i -pe 's/!\[(.*?)\]\((.*?)\)\s*(\{.*?\})?/my $alt=$1; my $path=$2; $path =~ s|^.*?\/||; $path =~ s|\.[^.]+$||; "\n<figure markdown=\"span\">\n  ![$alt](imagenes\/$path.svg)\n  <figcaption>$alt<\/figcaption>\n<\/figure>\n"/ge' "$TARGET"
-    
+
+    # Corrección de imágenes en HTML (<embed>, <img>, etc.)
+    sed -i 's|src="images/\([^"]*\)\.pdf"|src="imagenes/\1.svg"|g' "$TARGET"
+    sed -i 's|src="images/\([^"]*\)\.svg"|src="imagenes/\1.svg"|g' "$TARGET"
+
     sed -i '/::: titlepage/d' "$TARGET"
 done
 
