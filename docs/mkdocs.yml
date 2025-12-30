@@ -7,6 +7,8 @@ theme:
   name: material
   language: es
   palette: { scheme: default, primary: teal, accent: indigo }
+  features:
+    - content.code.copy
 markdown_extensions:
   - pymdownx.arithmatex: { generic: true }
   - pymdownx.highlight: { anchor_linenums: true }

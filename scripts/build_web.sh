@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =====================================================
-#   GENERADOR WEB v31 (Fix: Navegación Local)
+#   GENERADOR WEB v32 (Fix: Botón Copiar Código)
 # =====================================================
 
 # 1. DEFINICIÓN DE RUTAS
@@ -24,7 +24,7 @@ declare -a ORDEN_CAPITULOS=(
 )
 
 echo "========================================"
-echo "   GENERADOR WEB v31"
+echo "   GENERADOR WEB v32"
 echo "========================================"
 
 # --- 3. LIMPIEZA ---
@@ -55,7 +55,7 @@ else
     echo "⚠️  ERROR: No encuentro la carpeta $IMAGES_DIR."
 fi
 
-# --- 6. CONFIGURACIÓN MKDOCS (Aquí está el arreglo) ---
+# --- 6. CONFIGURACIÓN MKDOCS (MODIFICADO AQUÍ) ---
 cat > "$WEB_ROOT/mkdocs.yml" <<ENDYML
 site_name: Libro IA Agroambiental
 site_dir: ../docs_html_final
@@ -66,6 +66,8 @@ theme:
   name: material
   language: es
   palette: { scheme: default, primary: teal, accent: indigo }
+  features:
+    - content.code.copy
 markdown_extensions:
   - pymdownx.arithmatex: { generic: true }
   - pymdownx.highlight: { anchor_linenums: true }
