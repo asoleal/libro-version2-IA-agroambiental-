@@ -114,7 +114,15 @@ sed -i 's/\\begin{agrobox}{\(.*\)}/TOKENAGROSTART \1 TOKENAGROENDTITLE/g' *.tex
 sed -i 's/\\end{agrobox}/TOKENAGROSTOP/g' *.tex
 sed -i 's/\\begin{lstlisting}.*[Pp]ython.*/\\begin{lstlisting}[language=Python]/g' *.tex
 
-echo "# Bienvenido" > "$DOCS_CONTENT/index.md"
+# --- BLOQUE DE PORTADA PERSONALIZADA ---
+if [ -f "$SRC_DIR/intro.md" ]; then
+    echo ">> Usando portada personalizada (intro.md)..."
+    cp "$SRC_DIR/intro.md" "$DOCS_CONTENT/index.md"
+else
+    echo ">> Generando portada por defecto..."
+    echo "# Bienvenido" > "$DOCS_CONTENT/index.md"
+fi
+# ---------------------------------------
 
 for archivo in *.tex; do
     nombre=$(basename "$archivo" .tex)
