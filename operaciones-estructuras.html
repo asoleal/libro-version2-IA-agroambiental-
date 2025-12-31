@@ -1903,37 +1903,12 @@
 <p>Agroindustrial: Mezclas y Diluciones Si un vector <span class="arithmatex">\(\mathbf{v}\)</span> representa la concentración de azúcares y acidez de un lote de jugo, y queremos diluirlo al <span class="arithmatex">\(50\%\)</span>, aplicamos <span class="arithmatex">\(nuevo_lote = 0.5 * v\)</span>. El producto punto se usa para calcular el costo total de la mezcla si tenemos un vector de precios por litro de cada componente.</p>
 </blockquote>
 <h3 class="unnumbered" id="resumen-de-funciones-clave">Resumen de Funciones Clave</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;"><strong>Operación</strong></th>
-<th style="text-align: left;"><strong>Sintaxis NumPy</strong></th>
-<th style="text-align: left;"><strong>Sintaxis PyTorch</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Suma</td>
-<td style="text-align: left;"><code>a + b</code></td>
-<td style="text-align: left;"><code>a + b</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Escalamiento</td>
-<td style="text-align: left;"><code>k * a</code></td>
-<td style="text-align: left;"><code>k * a</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Producto Punto</td>
-<td style="text-align: left;"><code>np.dot(a, b)</code></td>
-<td style="text-align: left;"><code>torch.dot(a, b)</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Producto de Matriz</td>
-<td style="text-align: left;"><code>a @ b</code></td>
-<td style="text-align: left;"><code>torch.matmul(a, b)</code></td>
-</tr>
-</tbody>
-</table>
+<p><strong>Operación</strong>        <strong>Sintaxis NumPy</strong>   <strong>Sintaxis PyTorch</strong></p>
+<hr />
+<p>Suma                 <code>a + b</code>              <code>a + b</code>
+  Escalamiento         <code>k * a</code>              <code>k * a</code>
+  Producto Punto       <code>np.dot(a, b)</code>       <code>torch.dot(a, b)</code>
+  Producto de Matriz   <code>a @ b</code>              <code>torch.matmul(a, b)</code></p>
 <p>: Comparativa de funciones para aritmética tensorial.</p>
 <h2 id="multiplicacion-matriz-vector-el-motor-de-las-redes-neuronales">Multiplicación Matriz-Vector: El Motor de las Redes Neuronales</h2>
 <p>Antes de entrar en el formalismo, entendamos la intuición: si un vector representa un dato (ej. una parcela, un animal, una propuesta), multiplicar ese vector por una matriz es equivalente a procesar ese dato a través de un banco de filtros. La matriz toma la información cruda, mezcla sus componentes según ciertas reglas (pesos) y produce una nueva representación más útil para la toma de decisiones.</p>

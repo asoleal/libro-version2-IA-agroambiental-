@@ -1000,14 +1000,24 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--&gt; Valor pixel específico: </span><span class="si">{</span><span class="n">pixel_val</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 class="unnumbered" id="salida">Salida</h2>
-<p>::: salida
---- BLOQUE 1: CIENCIA DE DATOS (NumPy) --- Escalar (Humedad): 28.5 | Tipo: \&lt;class 'float'&gt;</p>
-<p>Vector: [120. 50. 3. 6.2] | Forma: (4,)</p>
-<p>Matriz (Parcelas x Vars): [[110. 6.1] [130. 6.3] [100. 5.9]] --&gt; pH de la parcela 2: 6.3</p>
-<p>--- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) --- Imagen Robot (C,H,W): torch.Size([3, 128, 128]) | Rango: 3</p>
-<p>Serie Satelital: torch.Size([10, 5, 64, 64])</p>
-<p>--&gt; Valor pixel específico: -0.4281
-:::</p>
+<div class="highlight"><pre><span></span><code>--- BLOQUE 1: CIENCIA DE DATOS (NumPy) ---
+Escalar (Humedad): 28.5 | Tipo: &lt;class &#39;float&#39;&gt;
+
+Vector: [120.  50.   3.   6.2] | Forma: (4,)
+
+Matriz (Parcelas x Vars):
+[[110.    6.1]
+ [130.    6.3]
+ [100.    5.9]]
+--&gt; pH de la parcela 2: 6.3
+
+--- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) ---
+Imagen Robot (C,H,W): torch.Size([3, 128, 128]) | Rango: 3
+
+Serie Satelital: torch.Size([10, 5, 64, 64])
+
+--&gt; Valor pixel específico: -0.4281
+</code></pre></div>
 <h1 id="conceptos-fundamentales-de-vectores-en-mathbbrn">Conceptos fundamentales de vectores en <span class="arithmatex">\(\mathbb{R}^n\)</span></h1>
 <p>Antes de introducir las operaciones entre vectores, es esencial comprender su estructura interna y sus propiedades geométricas. En ciencia de datos agro-ambiental, los vectores en Rn representan observaciones multivariadas, y su análisis requiere comprender cómo se comparan, cómo se mide su tamaño y cómo se orientan en el espacio.</p>
 <h2 id="transpuesta-de-vectores-y-matrices">Transpuesta de vectores y matrices</h2>
@@ -1124,10 +1134,18 @@ a_{1n} &amp; a_{2n} &amp; \cdots &amp; a_{mn}
 <a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma de (AB).T: </span><span class="si">{</span><span class="n">lhs</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Es igual a B.T @ A.T?: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>::: salida
---- 1. EL 'ENGAÑO' DE LOS VECTORES 1D --- Vector plano: torch.Size([3]) Transpuesta v.T: torch.Size([3]) (¡No cambia!) Vector Columna: torch.Size([3, 1]) Vector Fila (v_col.T): torch.Size([1, 3])</p>
-<p>--- 2. MATRICES Y PROPIEDAD (AB)T̂ --- Forma de (AB).T: torch.Size([2, 2]) ¿Es igual a B.T @ A.T?: True
-:::</p>
+<div class="highlight"><pre><span></span><code>--- 1. EL &#39;ENGAÑO&#39; DE LOS VECTORES 1D ---
+Vector plano: torch.Size([3])
+Transpuesta v.T: torch.Size([3]) (¡No cambia!)
+Vector Columna:
+torch.Size([3, 1])
+Vector Fila (v\_col.T):  % &lt;--- AQUÍ ESTABA EL ERROR (agregué \)
+torch.Size([1, 3])
+
+--- 2. MATRICES Y PROPIEDAD (AB)\^T ---
+Forma de (AB).T: torch.Size([2, 2])
+¿Es igual a B.T @ A.T?: True
+</code></pre></div>
 <h2 id="transposicion-en-tensores-permutacion">Transposición en Tensores (Permutación)</h2>
 <p>Para tensores de rango <span class="arithmatex">\(N \ge 3\)</span>, la noción de transposición se generaliza a la <strong>permutación de ejes</strong>. No existe una única "transpuesta", sino múltiples reordenamientos posibles de las dimensiones.</p>
 <p>Dado un tensor <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{d_1 \times d_2 \times d_3}\)</span>, con entradas <span class="arithmatex">\(t_{ijk}\)</span> donde <span class="arithmatex">\(i\)</span> es el índice del primer eje, <span class="arithmatex">\(j\)</span> del segundo y <span class="arithmatex">\(k\)</span> del tercero.</p>
@@ -1159,9 +1177,9 @@ a_{1n} &amp; a_{2n} &amp; \cdots &amp; a_{mn}
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1"># Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores &gt; 2D</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="c1"># Es preferible ser explícito con .permute()</span>
 </code></pre></div>
-<p>::: salida
-Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch.Size([4, 4, 3])
-:::</p>
+<div class="highlight"><pre><span></span><code>Forma original (C, H, W): torch.Size([3, 4, 4])
+Forma permutada (H, W, C): torch.Size([4, 4, 3])
+</code></pre></div>
 <h2 id="igualdad-de-vectores">Igualdad de vectores</h2>
 <p>Dos vectores <span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\)</span> se consideran <strong>iguales</strong> si satisfacen simultáneamente dos condiciones:</p>
 <ol>
@@ -1268,11 +1286,17 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 <a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="n">es_cercano</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">calculado</span><span class="p">,</span> <span class="n">teorico</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">)</span>
 <a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Igualdad con tolerancia (allclose)? </span><span class="si">{</span><span class="n">es_cercano</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>::: salida
---- 1. ELEMENT-WISE VS ESTRUCTURA --- Máscara: tensor([ True, False])</p>
-<p>--- 2. EL PROBLEMA DEL PUNTO FLOTANTE --- Valor Teórico: 2.0000000000 Valor Calculado: 2.0000002384 ¿Igualdad Estricta? tensor(False)</p>
-<p>--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) --- ¿Igualdad con tolerancia (allclose)? True
-:::</p>
+<div class="highlight"><pre><span></span><code>--- 1. ELEMENT-WISE VS ESTRUCTURA ---
+Máscara: tensor([ True, False])
+
+--- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---
+Valor Teórico:   2.0000000000
+Valor Calculado: 2.0000002384
+¿Igualdad Estricta? tensor(False)
+
+--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---
+¿Igualdad con tolerancia (allclose)? True
+</code></pre></div>
 <h1 id="norma-euclidiana-magnitud-y-direccion">Norma euclidiana (magnitud) y dirección</h1>
 <p>La <strong>norma euclidiana</strong> (también llamada longitud o módulo) de un vector <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_n)^\top \in \mathbb{R}^n\)</span> se define como la raíz cuadrada de la suma de sus componentes al cuadrado:</p>
 <div class="arithmatex">\[\lVert \mathbf{x} \rVert = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} .\]</div>
@@ -1410,10 +1434,15 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 <a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="c1"># Verificación: La norma de los cosenos directores siempre es 1</span>
 <a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comprobación (Norma del unitario): </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">cosenos_directores</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>::: salida
---- 1. DIRECCIÓN EN 2D (PRESUPUESTO) --- Ángulo (theta): 36.9 grados</p>
-<p>--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) --- Magnitud total: 70.71 Cosenos Directores (Dirección): tensor([0.5657, 0.4243, 0.7071]) Comprobación (Norma del unitario): 1.0
-:::</p>
+<div class="highlight"><pre><span></span><code>--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---
+Ángulo (theta): 36.9 grados
+
+--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---
+Magnitud total: 70.71
+Cosenos Directores (Dirección):
+tensor([0.5657, 0.4243, 0.7071])
+Comprobación (Norma del unitario): 1.0
+</code></pre></div>
 <h1 id="ejercicios-propuestos">Ejercicios propuestos</h1>
 <ol>
 <li>
