@@ -830,7 +830,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Álgebra Lineal con numpy.linalg">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Salida
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Salida">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -846,6 +857,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Salida
+      
+    </span>
+  </a>
   
 </li>
         
@@ -871,6 +893,17 @@
     <span class="md-ellipsis">
       
         Implementación: Manipulación de Vóxeles en Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Salida
       
     </span>
   </a>
@@ -1569,7 +1602,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Álgebra Lineal con numpy.linalg">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Salida
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Salida">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1585,6 +1629,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Salida
+      
+    </span>
+  </a>
   
 </li>
         
@@ -1610,6 +1665,17 @@
     <span class="md-ellipsis">
       
         Implementación: Manipulación de Vóxeles en Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Salida
       
     </span>
   </a>
@@ -2211,10 +2277,10 @@ c &amp; d
 <h5 id="relevancia-en-ia">Relevancia en IA</h5>
 <ul>
 <li>
-<p><strong>Regresión Lineal:</strong> Los coeficientes óptimos se estiman como <span class="arithmatex">\(\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}\)</span>.</p>
+<p><strong>Regresión Lineal:</strong> Los coeficientes óptimos se estiman como <span class="arithmatex">\(\beta = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}\)</span>.</p>
 </li>
 <li>
-<p><strong>Distancia de Mahalanobis:</strong> <span class="arithmatex">\(\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}\)</span>. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).</p>
+<p><strong>Distancia de Mahalanobis:</strong> <span class="arithmatex">\(\sqrt{(\mathbf{x}-\mu)^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\mu)}\)</span>. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).</p>
 </li>
 </ul>
 <p><strong>Ejemplo agronómico.</strong> Para predecir rendimiento (<span class="arithmatex">\(y\)</span>) a partir de N y P (<span class="arithmatex">\(\mathbf{X}\)</span>), necesitamos calcular <span class="arithmatex">\((\mathbf{X}^\top \mathbf{X})^{-1}\)</span>. Si</p>
@@ -2268,6 +2334,13 @@ c &amp; d
 <a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="k">else</span><span class="p">:</span>
 <a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz singular.&quot;</span><span class="p">)</span>
 </code></pre></div>
+<h3 class="unnumbered" id="salida-2">Salida</h3>
+<div class="highlight"><pre><span></span><code>Producto C (2x2):
+[[150 150]
+ [ 90 101]] 
+Matriz 2x2 -&gt; Traza: 7, Det: 11.00
+¿Es Identidad? True
+</code></pre></div>
 <div class="admonition warning"><p class="admonition-title">Nota sobre Punto Flotante</p> Al calcular la inversa, es común obtener números como `0.9999999` en lugar de `1.0` debido a la precisión finita de las computadoras. Por eso, en lugar de comparar con `==`, utilizamos `np.allclose()` para verificar si el resultado es matemáticamente correcto dentro de una tolerancia aceptable. </div>
 
 <h4 id="errores-comunes-y-buenas-practicas">Errores comunes y buenas prácticas</h4>
@@ -2297,9 +2370,12 @@ c &amp; d
 </code></pre></div>
 </li>
 </ol>
-<p>::: tcolorbox
-En el código de redes neuronales (como TensorFlow o PyTorch), la operación <code>capa_oculta @ pesos</code> ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
-:::</p>
+<h3 class="unnumbered" id="salida-3">Salida</h3>
+<div class="highlight"><pre><span></span><code>Error de dimensión: matmul: Input operand 1 has a mismatch in its core dimension 0...
+(size 3 is different from 2)
+</code></pre></div>
+<div class="admonition note"><p class="admonition-title">📘 Rendimiento en Deep Learning</p> En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo. </div>
+
 <h2 id="operaciones-con-tensores-en-bioingenieria">Operaciones con Tensores en Bioingeniería</h2>
 <p>A diferencia de las matrices, donde el producto punto es la estrella, en los tensores operamos frecuentemente con <strong>filtrado (convolución)</strong>, <strong>operaciones elemento a elemento</strong> (Hadamard) y <strong>re-dimensionamiento</strong> (Reshaping).</p>
 <blockquote>
@@ -2352,9 +2428,13 @@ En el código de redes neuronales (como TensorFlow o PyTorch), la operación <co
 <a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Vector</span> <span class="n">de</span> <span class="n">entrada</span> <span class="n">para</span> <span class="n">la</span> <span class="n">Red</span> <span class="n">Neuronal</span><span class="p">:</span> <span class="p">{</span><span class="n">input_vector</span><span class="o">.</span><span class="n">shape</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="c1"># Salida: (7864320,) -&gt; Un vector gigante</span>
 </code></pre></div>
-<p>::: tcolorbox
-El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño (<span class="arithmatex">\(256^3\)</span>) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la <strong>shape</strong> del tensor es crítico.
-:::</p>
+<h3 class="unnumbered" id="salida-4">Salida</h3>
+<div class="highlight"><pre><span></span><code>Forma original del tensor: (256, 256, 120)
+Forma del corte 2D: (256, 256)
+Vector de entrada para la Red Neuronal: (7864320,)
+</code></pre></div>
+<div class="admonition warning"><p class="admonition-title">Advertencia de Memoria</p> El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico. </div>
+
 <h2 id="ejercicios-y-proyectos-computacionales">Ejercicios y Proyectos Computacionales</h2>
 <p>En esta sección, saldremos de la teoría abstracta para resolver problemas reales de ingeniería agroambiental. El objetivo es modelar situaciones de campo utilizando vectores y matrices, y resolverlas mediante la implementación computacional en Python.</p>
 <h3 id="ejercicio-1-planificacion-de-fertilizantes-combinacion-lineal">Ejercicio 1: Planificación de Fertilizantes (Combinación Lineal)</h3>
