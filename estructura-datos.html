@@ -1134,6 +1134,7 @@ a_{1n} &amp; a_{2n} &amp; \cdots &amp; a_{mn}
 <a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma de (AB).T: </span><span class="si">{</span><span class="n">lhs</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Es igual a B.T @ A.T?: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+<h3 class="unnumbered" id="salida-1">Salida</h3>
 <div class="highlight"><pre><span></span><code>--- 1. EL &#39;ENGAÑO&#39; DE LOS VECTORES 1D ---
 Vector plano: torch.Size([3])
 Transpuesta v.T: torch.Size([3]) (¡No cambia!)
@@ -1177,6 +1178,7 @@ Forma de (AB).T: torch.Size([2, 2])
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1"># Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores &gt; 2D</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="c1"># Es preferible ser explícito con .permute()</span>
 </code></pre></div>
+<h2 class="unnumbered" id="salida-2">Salida</h2>
 <div class="highlight"><pre><span></span><code>Forma original (C, H, W): torch.Size([3, 4, 4])
 Forma permutada (H, W, C): torch.Size([4, 4, 3])
 </code></pre></div>
@@ -1286,6 +1288,7 @@ Forma permutada (H, W, C): torch.Size([4, 4, 3])
 <a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="n">es_cercano</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">calculado</span><span class="p">,</span> <span class="n">teorico</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">)</span>
 <a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Igualdad con tolerancia (allclose)? </span><span class="si">{</span><span class="n">es_cercano</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+<h2 class="unnumbered" id="salida-3">Salida</h2>
 <div class="highlight"><pre><span></span><code>--- 1. ELEMENT-WISE VS ESTRUCTURA ---
 Máscara: tensor([ True, False])
 
@@ -1391,6 +1394,11 @@ Valor Calculado: 2.0000002384
 <a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Norma Manual: </span><span class="si">{</span><span class="n">norma_manual</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># 5.0</span>
 <a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Norma Pro:    </span><span class="si">{</span><span class="n">norma_pro</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>    <span class="c1"># 5.0</span>
 </code></pre></div>
+<h2 class="unnumbered" id="salida-4">Salida</h2>
+<div class="highlight"><pre><span></span><code>Vector p: tensor([4., 3.])
+Norma Manual: 5.0
+Norma Pro:    5.0
+</code></pre></div>
 <h3 id="direccion-y-normalizacion">Dirección y Normalización</h3>
 <p>Aquí distinguimos entre 2D y <span class="arithmatex">\(N\)</span>-Dimensiones:</p>
 <ol>
@@ -1434,6 +1442,7 @@ Valor Calculado: 2.0000002384
 <a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="c1"># Verificación: La norma de los cosenos directores siempre es 1</span>
 <a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comprobación (Norma del unitario): </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">cosenos_directores</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+<h2 class="unnumbered" id="salida-5">Salida</h2>
 <div class="highlight"><pre><span></span><code>--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---
 Ángulo (theta): 36.9 grados
 
