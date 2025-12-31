@@ -41,10 +41,26 @@ figure img { max-width: 80%; height: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1)
 figcaption { font-style: italic; color: #666; margin-top: 10px; }
 .md-typeset .arithmatex { overflow-x: auto; }
 
-/* Estilos para Alertas y Ejemplos */
-details.example { background-color: #f0f8ff; border: 1px solid #2b506e; border-radius: 5px; margin: 1.5em 0; }
-details.example summary { background-color: #2b506e; color: white; padding: 10px; cursor: pointer; font-weight: bold; }
-.details-content { padding: 15px; background: white; border-top: 1px solid #ddd; }
+/* Estilos para APPBOX (Mecatrónica) - Opción A: Texto Oscuro */
+details.example {
+    background-color: #e0f7fa;   /* Cuerpo: Cian muy pálido */
+    border: 1px solid #26c6da;   /* Borde: Cian medio */
+    border-radius: 5px;
+    margin: 1.5em 0;
+}
+
+details.example summary {
+    background-color: #26c6da;   /* Cabecera: Cian vibrante */
+    color: #000000;              /* Texto: NEGRO (Máxima legibilidad) */
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 1px solid #0097a7; /* Línea sutil debajo del título */
+}
+.details-content {
+    padding: 15px;
+    background: white;
+}
 
 /* --- ESTILO TERMINAL DEFINITIVO --- */
 pre.terminal-output,
@@ -141,6 +157,8 @@ sed -i 's/\\end{alertblock}/TOKENINFOSTOP/g' *.tex
 sed -i 's/\\begin{appbox}{\(.*\)}/TOKENEXAMPLESTART \1 TOKENEXAMPLEENDTITLE/g' *.tex
 sed -i 's/\\end{appbox}/TOKENEXAMPLESTOP/g' *.tex
 sed -i 's/\\begin{agrobox}{\(.*\)}/TOKENAGROSTART \1 TOKENAGROENDTITLE/g' *.tex
+sed -i 's/\\begin{ingebox}{\(.*\)}/TOKENINGESTART \1 TOKENINGEENDTITLE/g' *.tex
+sed -i 's/\\end{ingebox}/TOKENINGESTOP/g' *.tex
 sed -i 's/\\end{agrobox}/TOKENAGROSTOP/g' *.tex
 sed -i 's/\\begin{lstlisting}.*[Pp]ython.*/\\begin{lstlisting}[language=Python]/g' *.tex
 
@@ -194,6 +212,8 @@ for archivo in *.tex; do
     sed -i 's/TOKENEXAMPLESTOP/<\/div><\/details>/g' "$TARGET"
     sed -i 's/TOKENAGROSTART \(.*\) TOKENAGROENDTITLE/<div class="admonition tip"><p class="admonition-title">🌿 \1<\/p>/g' "$TARGET"
     sed -i 's/TOKENAGROSTOP/<\/div>/g' "$TARGET"
+    sed -i 's/TOKENINGESTART \(.*\) TOKENINGEENDTITLE/<div class="admonition note"><p class="admonition-title">📘 \1<\/p>/g' "$TARGET"
+    sed -i 's/TOKENINGESTOP/<\/div>/g' "$TARGET"
 
     # 3. Imágenes
     perl -0777 -i -pe 's/!\[(.*?)\]\((.*?)\)\s*(\{.*?\})?/my $alt=$1; my $path=$2; $path =~ s|^.*?\/||; $path =~ s|\.[^.]+$||; "\n<figure markdown=\"span\">\n  ![$alt](imagenes\/$path.svg)\n  <figcaption>$alt<\/figcaption>\n<\/figure>\n"/ge' "$TARGET"

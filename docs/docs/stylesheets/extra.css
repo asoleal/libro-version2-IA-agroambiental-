@@ -4,10 +4,26 @@ figure img { max-width: 80%; height: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1)
 figcaption { font-style: italic; color: #666; margin-top: 10px; }
 .md-typeset .arithmatex { overflow-x: auto; }
 
-/* Estilos para Alertas y Ejemplos */
-details.example { background-color: #f0f8ff; border: 1px solid #2b506e; border-radius: 5px; margin: 1.5em 0; }
-details.example summary { background-color: #2b506e; color: white; padding: 10px; cursor: pointer; font-weight: bold; }
-.details-content { padding: 15px; background: white; border-top: 1px solid #ddd; }
+/* Estilos para APPBOX (Mecatrónica) - Opción A: Texto Oscuro */
+details.example {
+    background-color: #e0f7fa;   /* Cuerpo: Cian muy pálido */
+    border: 1px solid #26c6da;   /* Borde: Cian medio */
+    border-radius: 5px;
+    margin: 1.5em 0;
+}
+
+details.example summary {
+    background-color: #26c6da;   /* Cabecera: Cian vibrante */
+    color: #000000;              /* Texto: NEGRO (Máxima legibilidad) */
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 1px solid #0097a7; /* Línea sutil debajo del título */
+}
+.details-content {
+    padding: 15px;
+    background: white;
+}
 
 /* --- ESTILO TERMINAL DEFINITIVO --- */
 pre.terminal-output,

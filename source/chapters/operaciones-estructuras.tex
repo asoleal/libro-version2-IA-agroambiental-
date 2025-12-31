@@ -761,8 +761,9 @@ Una matriz $\mathbf{A}$ es invertible (o no singular) si y solo si cumple cualqu
 
 \paragraph{Relevancia en IA}
 \begin{itemize}
-    \item \textbf{Regresión Lineal:} Los coeficientes óptimos se estiman como $\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}$.
-    \item \textbf{Distancia de Mahalanobis:} $\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}$. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).
+    \item \textbf{Regresión Lineal:} Los coeficientes óptimos se estiman como $\beta = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}$.
+    \item \textbf{Distancia de Mahalanobis:} $\sqrt{(\mathbf{x}-\mu)^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\mu)}$. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).
+
 \end{itemize}
 
 \textbf{Ejemplo agronómico.} Para predecir rendimiento ($y$) a partir de N y P ($\mathbf{X}$), necesitamos calcular $(\mathbf{X}^\top \mathbf{X})^{-1}$. Si
@@ -831,6 +832,14 @@ if det_3 != 0:
 else:
     print("Matriz singular.")
 \end{lstlisting}
+\subsection*{Salida}
+\begin{salida}
+Producto C (2x2):
+[[150 150]
+ [ 90 101]] 
+Matriz 2x2 -> Traza: 7, Det: 11.00
+¿Es Identidad? True
+\end{salida}
 
 % Usamos alertblock. El script lo convertirá en una nota visual.
 \begin{alertblock}{Nota sobre Punto Flotante}
@@ -863,11 +872,15 @@ except ValueError as e:
 \end{lstlisting}
 \end{enumerate}
 
-\begin{tcolorbox}[colback=blue!5, colframe=blue!40, title=Nota de Ingeniería]
+\subsection*{Salida}
+\begin{salida}
+Error de dimensión: matmul: Input operand 1 has a mismatch in its core dimension 0...
+(size 3 is different from 2)
+\end{salida}
+
+\begin{ingebox}{Rendimiento en Deep Learning}
 En el código de redes neuronales (como TensorFlow o PyTorch), la operación \texttt{capa\_oculta @ pesos} ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
-\end{tcolorbox}
-
-
+\end{ingebox}
 
 \section{Operaciones con Tensores en Bioingeniería}
 
@@ -937,9 +950,16 @@ print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
 # Salida: (7864320,) -> Un vector gigante
 \end{lstlisting}
 
-\begin{tcolorbox}[colback=red!5, colframe=red!40, title=Advertencia de Memoria]
+\subsection*{Salida}
+\begin{salida}
+Forma original del tensor: (256, 256, 120)
+Forma del corte 2D: (256, 256)
+Vector de entrada para la Red Neuronal: (7864320,)
+\end{salida}    
+
+\begin{alertblock}{Advertencia de Memoria}
 El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la \textbf{shape} del tensor es crítico.
-\end{tcolorbox}
+\end{alertblock}
 
 \section{Ejercicios y Proyectos Computacionales}
 

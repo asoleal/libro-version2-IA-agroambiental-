@@ -595,9 +595,9 @@ Una matriz $\mathbf{A}$ es invertible (o no singular) si y solo si cumple cualqu
 
 ##### Relevancia en IA
 
--   **Regresión Lineal:** Los coeficientes óptimos se estiman como $\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}$.
+-   **Regresión Lineal:** Los coeficientes óptimos se estiman como $\beta = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}$.
 
--   **Distancia de Mahalanobis:** $\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}$. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).
+-   **Distancia de Mahalanobis:** $\sqrt{(\mathbf{x}-\mu)^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\mu)}$. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).
 
 **Ejemplo agronómico.** Para predecir rendimiento ($y$) a partir de N y P ($\mathbf{X}$), necesitamos calcular $(\mathbf{X}^\top \mathbf{X})^{-1}$. Si
 
@@ -662,6 +662,16 @@ else:
     print("Matriz singular.")
 ```
 
+### Salida {#salida-2 .unnumbered}
+
+
+
+    Producto C (2x2):
+    [[150 150]
+     [ 90 101]] 
+    Matriz 2x2 -> Traza: 7, Det: 11.00
+    ¿Es Identidad? True
+
 <div class="admonition warning"><p class="admonition-title">Nota sobre Punto Flotante</p> Al calcular la inversa, es común obtener números como `0.9999999` en lugar de `1.0` debido a la precisión finita de las computadoras. Por eso, en lugar de comparar con `==`, utilizamos `np.allclose()` para verificar si el resultado es matemáticamente correcto dentro de una tolerancia aceptable. </div>
 
 #### Errores comunes y buenas prácticas
@@ -686,9 +696,14 @@ else:
     # (size 3 is different from 2)
     ```
 
-::: tcolorbox
-En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
-:::
+### Salida {#salida-3 .unnumbered}
+
+
+
+    Error de dimensión: matmul: Input operand 1 has a mismatch in its core dimension 0...
+    (size 3 is different from 2)
+
+<div class="admonition note"><p class="admonition-title">📘 Rendimiento en Deep Learning</p> En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo. </div>
 
 ## Operaciones con Tensores en Bioingeniería
 
@@ -749,9 +764,15 @@ print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
 # Salida: (7864320,) -> Un vector gigante
 ```
 
-::: tcolorbox
-El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico.
-:::
+### Salida {#salida-4 .unnumbered}
+
+
+
+    Forma original del tensor: (256, 256, 120)
+    Forma del corte 2D: (256, 256)
+    Vector de entrada para la Red Neuronal: (7864320,)
+
+<div class="admonition warning"><p class="admonition-title">Advertencia de Memoria</p> El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico. </div>
 
 ## Ejercicios y Proyectos Computacionales
 
