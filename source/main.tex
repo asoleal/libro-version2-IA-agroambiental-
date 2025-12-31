@@ -72,26 +72,39 @@
 \tcbuselibrary{breakable, skins, listings} 
 
 % --- A. CAJA DE SALIDA / CONSOLA ---
-\newtcblisting{salida}[1][Resultados]{
-    colback=terminalbg,       
-    colframe=terminalframe,   
-    listing only,             
-    listing options={
-        basicstyle=\small\ttfamily, 
-        breaklines=true,
-        columns=fullflexible,
-        language={}           
-    },
-    title={\texttt{>\_} #1},  
-    coltitle=black!80,        
-    colbacktitle=gray!15,     
-    fonttitle=\bfseries\ttfamily,
-    arc=2pt,                  
-    boxrule=0.5pt,            
-    enhanced,
-    breakable,                
-    left=5pt, right=5pt, top=5pt, bottom=5pt
-}
+
+\ifdefined\PANDOC
+  % ===== Versión para Pandoc (HTML) =====
+  \newenvironment{salida}[1][Resultados]
+  {
+    \begin{verbatim}
+  }
+  {
+    \end{verbatim}
+  }
+\else
+  % ===== Versión para LaTeX (PDF bonito) =====
+  \newtcblisting{salida}[1][Resultados]{
+      colback=terminalbg,
+      colframe=terminalframe,
+      listing only,
+      listing options={
+          basicstyle=\small\ttfamily,
+          breaklines=true,
+          columns=fullflexible,
+          language={}
+      },
+      title={\texttt{>\_} #1},
+      coltitle=black!80,
+      colbacktitle=gray!15,
+      fonttitle=\bfseries\ttfamily,
+      arc=2pt,
+      boxrule=0.5pt,
+      enhanced,
+      breakable,
+      left=5pt, right=5pt, top=5pt, bottom=5pt
+  }
+\fi
 
 % --- B. AGROBOX (Conceptos Agrícolas) ---
 \newtcolorbox{agrobox}[1]{

@@ -1,15 +1,13 @@
 #!/bin/bash
 
 # =====================================================
-#   GENERADOR WEB v32 (Fix: Botón Copiar Código)
+#   GENERADOR WEB v43 (Regex Mejorado para Entornos)
 # =====================================================
 
 # 1. DEFINICIÓN DE RUTAS
 PROJECT_ROOT=$(pwd)
 SRC_DIR="$PROJECT_ROOT/source"
 CHAPTERS_DIR="$SRC_DIR/chapters"
-IMAGES_DIR="$SRC_DIR/images"
-
 WEB_ROOT="$PROJECT_ROOT/docs"
 DOCS_CONTENT="$WEB_ROOT/docs"
 TEMP_DIR="$PROJECT_ROOT/build/web_temp"
@@ -24,7 +22,7 @@ declare -a ORDEN_CAPITULOS=(
 )
 
 echo "========================================"
-echo "   GENERADOR WEB v32"
+echo "   GENERADOR WEB v43"
 echo "========================================"
 
 # --- 3. LIMPIEZA ---
@@ -39,28 +37,49 @@ cp "$CHAPTERS_DIR"/*.tex "$TEMP_DIR/" 2>/dev/null || { echo "❌ Error copiando 
 cat > "$DOCS_CONTENT/stylesheets/extra.css" <<ENDCSS
 body { font-size: 18px; line-height: 1.6; color: #333; }
 figure { display: block; margin: 40px auto; text-align: center; }
-figure img { max-width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 4px; }
+figure img { max-width: 80%; height: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 4px; }
 figcaption { font-style: italic; color: #666; margin-top: 10px; }
 .md-typeset .arithmatex { overflow-x: auto; }
+
+/* Estilos para Alertas y Ejemplos */
 details.example { background-color: #f0f8ff; border: 1px solid #2b506e; border-radius: 5px; margin: 1.5em 0; }
 details.example summary { background-color: #2b506e; color: white; padding: 10px; cursor: pointer; font-weight: bold; }
 .details-content { padding: 15px; background: white; border-top: 1px solid #ddd; }
+
+/* --- ESTILO TERMINAL DEFINITIVO --- */
+pre.terminal-output,
+code.terminal-output,
+.terminal-output {
+    background-color: #f8f9fa;
+    color: #212529;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.85em;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    border-left: 5px solid #4caf50; /* Borde verde característico */
+    margin: 25px 0;
+    display: block;
+    white-space: pre;
+    overflow-x: auto;
+    line-height: 1.45;
+}
+
+/* Forzar que el código interno no tenga fondo ni bordes extra */
+.terminal-output code {
+    background-color: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    color: inherit !important;
+    white-space: pre !important;
+}
 ENDCSS
 
-# --- 5. COPIADO DE IMÁGENES ---
-echo ">> Copiando imágenes desde $IMAGES_DIR..."
-if [ -d "$IMAGES_DIR" ]; then
-    cp -r "$IMAGES_DIR/"* "$DOCS_CONTENT/imagenes/" 2>/dev/null || true
-else
-    echo "⚠️  ERROR: No encuentro la carpeta $IMAGES_DIR."
-fi
-
-# --- 6. CONFIGURACIÓN MKDOCS (MODIFICADO AQUÍ) ---
+# --- 5. MKDOCS.YML ---
 cat > "$WEB_ROOT/mkdocs.yml" <<ENDYML
 site_name: Libro IA Agroambiental
 site_dir: ../docs_html_final
 docs_dir: docs
-# ESTA LINEA ARREGLA LA NAVEGACIÓN LOCAL:
 use_directory_urls: false
 theme:
   name: material
@@ -87,12 +106,11 @@ ENDYML
 
 for cap in "${ORDEN_CAPITULOS[@]}"; do
     if [ -f "$TEMP_DIR/$cap.tex" ]; then
-        # Nota: MkDocs usará el nombre del archivo .md como ruta
         echo "  - $cap.md" >> "$WEB_ROOT/mkdocs.yml"
     fi
 done
 
-# --- 7. MATHJAX ---
+# --- 6. MATHJAX ---
 cat > "$DOCS_CONTENT/javascripts/mathjax-config.js" <<ENDJS
 window.MathJax = {
   loader: {load: ['[tex]/boldsymbol', '[tex]/ams']},
@@ -101,11 +119,23 @@ window.MathJax = {
 };
 ENDJS
 
-# --- 8. CONVERSIÓN PANDOC ---
+# --- 7. IMÁGENES ---
+echo ">> Copiando imágenes..."
+IMAGES_SOURCE="$PROJECT_ROOT/images"
+mkdir -p "$DOCS_CONTENT/imagenes"
+if [ -d "$IMAGES_SOURCE" ]; then
+    cp "$IMAGES_SOURCE"/*.svg "$DOCS_CONTENT/imagenes/" 2>/dev/null || true
+fi
+
+# --- 8. PROCESAMIENTO PANDOC ---
 echo ">> Transformando LaTeX a Markdown..."
 cd "$TEMP_DIR" || exit
 
-# Pre-procesado
+# ==========================================================
+#  PASO A: PRE-PROCESAMIENTO (CRUCIAL)
+# ==========================================================
+
+# 1. Convertimos entornos personalizados a Tokens de texto
 sed -i 's/\\begin{alertblock}{\(.*\)}/TOKENINFOSTART \1 TOKENINFOENDTITLE/g' *.tex
 sed -i 's/\\end{alertblock}/TOKENINFOSTOP/g' *.tex
 sed -i 's/\\begin{appbox}{\(.*\)}/TOKENEXAMPLESTART \1 TOKENEXAMPLEENDTITLE/g' *.tex
@@ -114,24 +144,50 @@ sed -i 's/\\begin{agrobox}{\(.*\)}/TOKENAGROSTART \1 TOKENAGROENDTITLE/g' *.tex
 sed -i 's/\\end{agrobox}/TOKENAGROSTOP/g' *.tex
 sed -i 's/\\begin{lstlisting}.*[Pp]ython.*/\\begin{lstlisting}[language=Python]/g' *.tex
 
-# --- BLOQUE DE PORTADA PERSONALIZADA ---
+# 2. EL REEMPLAZO "CIRÚRGICO" PARA 'salida'
+# Ignoramos tu definición de LaTeX y forzamos un entorno verbatim estándar.
+# \s* permite espacios entre {salida} y el corchete opcional [Resultados]
+# (?:...)? hace que el argumento opcional sea... opcional.
+
+perl -i -pe 's/\\begin\{salida\}\s*(?:\[.*?\])?/TOKEN_SALIDA_FIX\n\\begin{verbatim}/g' *.tex
+perl -i -pe 's/\\end\{salida\}/\\end{verbatim}/g' *.tex
+
+# --- PORTADA ---
 if [ -f "$SRC_DIR/intro.md" ]; then
-    echo ">> Usando portada personalizada (intro.md)..."
     cp "$SRC_DIR/intro.md" "$DOCS_CONTENT/index.md"
 else
-    echo ">> Generando portada por defecto..."
     echo "# Bienvenido" > "$DOCS_CONTENT/index.md"
 fi
-# ---------------------------------------
 
+# --- BUCLE DE CAPÍTULOS ---
 for archivo in *.tex; do
     nombre=$(basename "$archivo" .tex)
     if [ "$nombre" == "main" ]; then continue; fi
     TARGET="$DOCS_CONTENT/$nombre.md"
 
-    pandoc "$archivo" -f latex -t markdown-simple_tables+fenced_code_blocks --mathjax --wrap=none -o "$TARGET"
+    # ==========================================================
+    # PASO B: PANDOC
+    # ==========================================================
+    # Usamos +fenced_code_blocks para que Pandoc prefiera ``` sobre la indentación
+    pandoc "$archivo" -f latex -t markdown+fenced_code_blocks --mathjax --wrap=none -o "$TARGET"
 
-        # Post-Procesado
+    # ==========================================================
+    # PASO C: POST-PROCESAMIENTO (Inyección de Clases)
+    # ==========================================================
+
+    # Buscamos nuestra marca TOKEN_SALIDA_FIX seguida de un bloque de código.
+    # Pandoc puede generar ``` o ~~~.
+
+    # Opción 1: Bloques con ```
+    perl -0777 -i -pe 's/TOKEN_SALIDA_FIX\s*\n\s*```/```{.terminal-output}/gs' "$TARGET"
+
+    # Opción 2: Bloques con ~~~
+    perl -0777 -i -pe 's/TOKEN_SALIDA_FIX\s*\n\s*~~~/~~~{.terminal-output}/gs' "$TARGET"
+
+    # Limpieza de seguridad: Si quedó algún token suelto (porque el regex falló), bórralo para que no salga en el texto.
+    sed -i 's/TOKEN_SALIDA_FIX//g' "$TARGET"
+
+    # 2. Resto de Tokens (Alertas, etc)
     sed -i 's/TOKENINFOSTART \(.*\) TOKENINFOENDTITLE/<div class="admonition warning"><p class="admonition-title">\1<\/p>/g' "$TARGET"
     sed -i 's/TOKENINFOSTOP/<\/div>/g' "$TARGET"
     sed -i 's/TOKENEXAMPLESTART \(.*\) TOKENEXAMPLEENDTITLE/<details class="example"><summary><strong>Aplicación: \1<\/strong><\/summary><div class="details-content">/g' "$TARGET"
@@ -139,10 +195,8 @@ for archivo in *.tex; do
     sed -i 's/TOKENAGROSTART \(.*\) TOKENAGROENDTITLE/<div class="admonition tip"><p class="admonition-title">🌿 \1<\/p>/g' "$TARGET"
     sed -i 's/TOKENAGROSTOP/<\/div>/g' "$TARGET"
 
-    # Corrección de imágenes en sintaxis Markdown
+    # 3. Imágenes
     perl -0777 -i -pe 's/!\[(.*?)\]\((.*?)\)\s*(\{.*?\})?/my $alt=$1; my $path=$2; $path =~ s|^.*?\/||; $path =~ s|\.[^.]+$||; "\n<figure markdown=\"span\">\n  ![$alt](imagenes\/$path.svg)\n  <figcaption>$alt<\/figcaption>\n<\/figure>\n"/ge' "$TARGET"
-
-    # Corrección de imágenes en HTML (<embed>, <img>, etc.)
     sed -i 's|src="images/\([^"]*\)\.pdf"|src="imagenes/\1.svg"|g' "$TARGET"
     sed -i 's|src="images/\([^"]*\)\.svg"|src="imagenes/\1.svg"|g' "$TARGET"
 
@@ -152,4 +206,4 @@ done
 # --- 9. BUILD ---
 echo ">> Compilando sitio MkDocs..."
 cd "$WEB_ROOT" && mkdocs build
-echo "✅ SITIO LISTO: docs_html_final/index.html"
+echo "✅ SITIO LISTO"

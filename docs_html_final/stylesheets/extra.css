@@ -1,8 +1,38 @@
 body { font-size: 18px; line-height: 1.6; color: #333; }
 figure { display: block; margin: 40px auto; text-align: center; }
-figure img { max-width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 4px; }
+figure img { max-width: 80%; height: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 4px; }
 figcaption { font-style: italic; color: #666; margin-top: 10px; }
 .md-typeset .arithmatex { overflow-x: auto; }
+
+/* Estilos para Alertas y Ejemplos */
 details.example { background-color: #f0f8ff; border: 1px solid #2b506e; border-radius: 5px; margin: 1.5em 0; }
 details.example summary { background-color: #2b506e; color: white; padding: 10px; cursor: pointer; font-weight: bold; }
 .details-content { padding: 15px; background: white; border-top: 1px solid #ddd; }
+
+/* --- ESTILO TERMINAL DEFINITIVO --- */
+pre.terminal-output,
+code.terminal-output,
+.terminal-output {
+    background-color: #f8f9fa;
+    color: #212529;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.85em;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    border-left: 5px solid #4caf50; /* Borde verde característico */
+    margin: 25px 0;
+    display: block;
+    white-space: pre;
+    overflow-x: auto;
+    line-height: 1.45;
+}
+
+/* Forzar que el código interno no tenga fondo ni bordes extra */
+.terminal-output code {
+    background-color: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    color: inherit !important;
+    white-space: pre !important;
+}

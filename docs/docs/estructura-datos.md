@@ -290,19 +290,25 @@ print(f"--> Valor pixel específico: {pixel_val:.4f}")
 
 ## Salida {#salida .unnumbered}
 
-::: salida
---- BLOQUE 1: CIENCIA DE DATOS (NumPy) --- Escalar (Humedad): 28.5 \| Tipo: \<class 'float'\>
 
-Vector: \[120. 50. 3. 6.2\] \| Forma: (4,)
 
-Matriz (Parcelas x Vars): \[\[110. 6.1\] \[130. 6.3\] \[100. 5.9\]\] --\> pH de la parcela 2: 6.3
+    --- BLOQUE 1: CIENCIA DE DATOS (NumPy) ---
+    Escalar (Humedad): 28.5 | Tipo: <class 'float'>
 
---- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) --- Imagen Robot (C,H,W): torch.Size(\[3, 128, 128\]) \| Rango: 3
+    Vector: [120.  50.   3.   6.2] | Forma: (4,)
 
-Serie Satelital: torch.Size(\[10, 5, 64, 64\])
+    Matriz (Parcelas x Vars):
+    [[110.    6.1]
+     [130.    6.3]
+     [100.    5.9]]
+    --> pH de la parcela 2: 6.3
 
---\> Valor pixel específico: -0.4281
-:::
+    --- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) ---
+    Imagen Robot (C,H,W): torch.Size([3, 128, 128]) | Rango: 3
+
+    Serie Satelital: torch.Size([10, 5, 64, 64])
+
+    --> Valor pixel específico: -0.4281
 
 # Conceptos fundamentales de vectores en $\mathbb{R}^n$
 
@@ -440,11 +446,19 @@ print(f"Forma de (AB).T: {lhs.shape}")
 print(f"¿Es igual a B.T @ A.T?: {torch.allclose(lhs, rhs)}")
 ```
 
-::: salida
---- 1. EL 'ENGAÑO' DE LOS VECTORES 1D --- Vector plano: torch.Size(\[3\]) Transpuesta v.T: torch.Size(\[3\]) (¡No cambia!) Vector Columna: torch.Size(\[3, 1\]) Vector Fila (v_col.T): torch.Size(\[1, 3\])
 
---- 2. MATRICES Y PROPIEDAD (AB)T̂ --- Forma de (AB).T: torch.Size(\[2, 2\]) ¿Es igual a B.T @ A.T?: True
-:::
+
+    --- 1. EL 'ENGAÑO' DE LOS VECTORES 1D ---
+    Vector plano: torch.Size([3])
+    Transpuesta v.T: torch.Size([3]) (¡No cambia!)
+    Vector Columna:
+    torch.Size([3, 1])
+    Vector Fila (v\_col.T):  % <--- AQUÍ ESTABA EL ERROR (agregué \)
+    torch.Size([1, 3])
+
+    --- 2. MATRICES Y PROPIEDAD (AB)\^T ---
+    Forma de (AB).T: torch.Size([2, 2])
+    ¿Es igual a B.T @ A.T?: True
 
 ## Transposición en Tensores (Permutación)
 
@@ -487,9 +501,10 @@ print(f"Forma permutada (H, W, C): {imagen_plot.shape}")
 # Es preferible ser explícito con .permute()
 ```
 
-::: salida
-Forma original (C, H, W): torch.Size(\[3, 4, 4\]) Forma permutada (H, W, C): torch.Size(\[4, 4, 3\])
-:::
+
+
+    Forma original (C, H, W): torch.Size([3, 4, 4])
+    Forma permutada (H, W, C): torch.Size([4, 4, 3])
 
 ## Igualdad de vectores
 
@@ -613,13 +628,18 @@ es_cercano = torch.allclose(calculado, teorico, atol=1e-05)
 print(f"¿Igualdad con tolerancia (allclose)? {es_cercano}")
 ```
 
-::: salida
---- 1. ELEMENT-WISE VS ESTRUCTURA --- Máscara: tensor(\[ True, False\])
 
---- 2. EL PROBLEMA DEL PUNTO FLOTANTE --- Valor Teórico: 2.0000000000 Valor Calculado: 2.0000002384 ¿Igualdad Estricta? tensor(False)
 
---- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) --- ¿Igualdad con tolerancia (allclose)? True
-:::
+    --- 1. ELEMENT-WISE VS ESTRUCTURA ---
+    Máscara: tensor([ True, False])
+
+    --- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---
+    Valor Teórico:   2.0000000000
+    Valor Calculado: 2.0000002384
+    ¿Igualdad Estricta? tensor(False)
+
+    --- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---
+    ¿Igualdad con tolerancia (allclose)? True
 
 # Norma euclidiana (magnitud) y dirección
 
@@ -766,11 +786,16 @@ print(f"Cosenos Directores (Dirección):\n{cosenos_directores}")
 print(f"Comprobación (Norma del unitario): {torch.norm(cosenos_directores):.1f}")
 ```
 
-::: salida
---- 1. DIRECCIÓN EN 2D (PRESUPUESTO) --- Ángulo (theta): 36.9 grados
 
---- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) --- Magnitud total: 70.71 Cosenos Directores (Dirección): tensor(\[0.5657, 0.4243, 0.7071\]) Comprobación (Norma del unitario): 1.0
-:::
+
+    --- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---
+    Ángulo (theta): 36.9 grados
+
+    --- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---
+    Magnitud total: 70.71
+    Cosenos Directores (Dirección):
+    tensor([0.5657, 0.4243, 0.7071])
+    Comprobación (Norma del unitario): 1.0
 
 # Ejercicios propuestos
 

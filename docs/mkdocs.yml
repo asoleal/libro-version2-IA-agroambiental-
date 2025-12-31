@@ -1,7 +1,6 @@
 site_name: Libro IA Agroambiental
 site_dir: ../docs_html_final
 docs_dir: docs
-# ESTA LINEA ARREGLA LA NAVEGACIÓN LOCAL:
 use_directory_urls: false
 theme:
   name: material

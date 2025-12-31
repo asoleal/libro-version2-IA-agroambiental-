@@ -289,14 +289,14 @@ print(f''Gasto total calculado via producto punto: ${gasto_total}'')
 
 ### Resumen de Funciones Clave {#resumen-de-funciones-clave .unnumbered}
 
-| **Operación**      | **Sintaxis NumPy** | **Sintaxis PyTorch** |
-|:-------------------|:-------------------|:---------------------|
-| Suma               | `a + b`            | `a + b`              |
-| Escalamiento       | `k * a`            | `k * a`              |
-| Producto Punto     | `np.dot(a, b)`     | `torch.dot(a, b)`    |
-| Producto de Matriz | `a @ b`            | `torch.matmul(a, b)` |
+  **Operación**        **Sintaxis NumPy**   **Sintaxis PyTorch**
+  -------------------- -------------------- ----------------------
+  Suma                 `a + b`              `a + b`
+  Escalamiento         `k * a`              `k * a`
+  Producto Punto       `np.dot(a, b)`       `torch.dot(a, b)`
+  Producto de Matriz   `a @ b`              `torch.matmul(a, b)`
 
-: Comparativa de funciones para aritmética tensorial.
+  : Comparativa de funciones para aritmética tensorial.
 
 ## Multiplicación Matriz-Vector: El Motor de las Redes Neuronales
 

@@ -84,12 +84,17 @@ agua_nueva = 40 # Litros
 prediccion = pendiente * agua_nueva + intercepto
 ```
 
-::: salida
-Matriz A (Diseño): \[\[10. 1.\] \[15. 1.\] \[20. 1.\]\]
 
-Modelo encontrado: Biomasa = 0.110 \* Agua + 0.205
 
-Predicción para 40L de agua: 4.62 Kg de biomasa
-:::
+    Matriz A (Diseño):
+    [[10.  1.]
+     [15.  1.]
+     [20.  1.]]
+     
+    Modelo encontrado:
+    Biomasa = 0.110 * Agua + 0.205
+
+    Predicción para 40L de agua:
+    4.62 Kg de biomasa
 
 <div class="admonition warning"><p class="admonition-title">Atención: Correlación no implica Causalidad</p> Un $R^2$ alto en nuestro modelo matemático no significa que el agua sea la única causa del crecimiento. Si ignoramos plagas o temperatura, el modelo fallará en producción real. El álgebra lineal no tiene sentido común biológico. </div>
