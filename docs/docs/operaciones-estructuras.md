@@ -254,15 +254,22 @@ import torch
 dosis_neta = np.array([50, 20, 10])  # N, P, K inicial
 suplemento = np.array([10,  5,  5])  # Refuerzo aplicado
 dosis_total = dosis_neta + suplemento
-print(f''Dosis Total (Vector): {dosis_total}'')
+print(f"Dosis Total (Vector): {dosis_total}")
 
 # 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)
 # Escalar una señal de sensor de torque
 torque_raw = torch.tensor([1.2, 0.8, 1.5])
 ganancia = 2.5
 torque_ajustado = ganancia * torque_raw
-print(f''Torque ajustado: {torque_ajustado}'')
+print(f"Torque ajustado: {torque_ajustado}")
 ```
+
+### Salida {#salida .unnumbered}
+
+
+
+    Dosis Total (Vector): [60 25 15]
+    Torque ajustado: tensor([3.0000, 2.0000, 3.7500])
 
 ### El Producto Punto: Cuantificando la Afinidad
 
@@ -280,6 +287,12 @@ gasto_total_alt = unidades @ precios
 
 print(f''Gasto total calculado via producto punto: ${gasto_total}'')
 ```
+
+### Salida {#salida-1 .unnumbered}
+
+
+
+    Gasto total calculado via producto punto: $112.5
 
 ### Aplicaciones Sectoriales en Código
 

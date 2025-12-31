@@ -446,6 +446,8 @@ print(f"Forma de (AB).T: {lhs.shape}")
 print(f"¿Es igual a B.T @ A.T?: {torch.allclose(lhs, rhs)}")
 ```
 
+### Salida {#salida-1 .unnumbered}
+
 
 
     --- 1. EL 'ENGAÑO' DE LOS VECTORES 1D ---
@@ -500,6 +502,8 @@ print(f"Forma permutada (H, W, C): {imagen_plot.shape}")
 # Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores > 2D
 # Es preferible ser explícito con .permute()
 ```
+
+## Salida {#salida-2 .unnumbered}
 
 
 
@@ -628,6 +632,8 @@ es_cercano = torch.allclose(calculado, teorico, atol=1e-05)
 print(f"¿Igualdad con tolerancia (allclose)? {es_cercano}")
 ```
 
+## Salida {#salida-3 .unnumbered}
+
 
 
     --- 1. ELEMENT-WISE VS ESTRUCTURA ---
@@ -742,6 +748,14 @@ print(f"Norma Manual: {norma_manual.item()}") # 5.0
 print(f"Norma Pro:    {norma_pro.item()}")    # 5.0
 ```
 
+## Salida {#salida-4 .unnumbered}
+
+
+
+    Vector p: tensor([4., 3.])
+    Norma Manual: 5.0
+    Norma Pro:    5.0
+
 ### Dirección y Normalización
 
 Aquí distinguimos entre 2D y $N$-Dimensiones:
@@ -785,6 +799,8 @@ print(f"Cosenos Directores (Dirección):\n{cosenos_directores}")
 # Verificación: La norma de los cosenos directores siempre es 1
 print(f"Comprobación (Norma del unitario): {torch.norm(cosenos_directores):.1f}")
 ```
+
+## Salida {#salida-5 .unnumbered}
 
 
 
